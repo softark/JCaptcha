@@ -41,32 +41,32 @@ class JCaptchaAction extends CCaptchaAction
 	public $offsetJ = 2;
 
 	/**
-	 * @var boolean whether to use Non-Alphabet Characters
+	 * @var boolean whether to use Non-Alphabet Characters. Defaults to false.
 	 */
 	public $useNonAlphabet = true;
 
 	/**
-	 * @var string Non-Alphabet font file. Defaults to setofont.ttf
+	 * @var string Non-Alphabet font file. Defaults to setofont.ttf.
 	 * Thanks to 瀬戸のぞみ (Nozomi Seto) for the wonderful font.
 	 * http://nonty.net/item/font/setofont.php
 	 */
 	public $fontFileJ;
 	
 	/**
-	 * @var boolean whether to render the captcha image with a fixed angle.
+	 * @var boolean whether to render the captcha image with a fixed angle. Defaults to false.
 	 * You may want to set this to true if you have trouble rendering your font.
 	 */
 	public $fixedAngle = false;
 	
 	/**
-	 * @var type string used for generating the random string of captcha.
-	 * It defaults to a set of Japanese Kana characters. You may set your own.
+	 * @var string The string used for generating the random string of captcha.
+	 * Defaults to a series of Japanese Kana characters. You may want to set your own.
 	 */
 	public $seeds;
 	
 	/**
-	 * @var type boolean whether to check if conversion to shift_JIS is needed
-	 * Defaults to false;
+	 * @var boolean whether to check if conversion to shift_JIS is needed
+	 * Defaults to false.
 	 */
 	public $checkSJISConversion = false;
 	
