@@ -117,6 +117,8 @@ JCaptchaAction は CCaptchaAction のプロパティすべてに加えて、以�
 
 + Version 1.0.0 (2013-03-18)
 	+ 最初のリリース
++ Version 1.0.1 (2013-03-18)
+	+ バグ・フィックス
 
 謝辞
 ----

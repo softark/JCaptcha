@@ -120,6 +120,8 @@ History
 
 + Version 1.0.0 (2013-03-18)
 	+ Initial release
++ Version 1.0.1 (2013-03-18)
+	+ Bug fix
 
 Acknowledgment
 --------------
