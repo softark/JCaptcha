@@ -112,6 +112,12 @@ JCaptchaAction は CCaptchaAction のプロパティすべてに加えて、以�
 	既定値は false で、UTF-8 のまま文字を描画する。  
 	動作環境によっては、 true に設定する必要があるかも知れない。
 
+履歴
+----
+
++ Version 1.0.0 (2013-03-18)
+	+ 最初のリリース
+
 謝辞
 ----
 [瀬戸フォント丸 setofontmaru.ttf](http://nonty.net/item/font/setofontmaru.php) をシェアして下さっている[瀬戸のぞみさん](http://nonty.net/about/) に感謝の意を表します。

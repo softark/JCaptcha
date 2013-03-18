@@ -113,6 +113,12 @@ The items with **(*)** are basic options that you may want to configure.
 	@var boolean  
 	Whether to check if conversion to shift_JIS is needed. Defaults to false.
 
+History
+-------
+
++ Version 1.0.0 (2013-03-18)
+	+ Initial release
+
 Acknowledgment
 --------------
 Many thanks to [瀬戸のぞみ (Nozomi Seto)](http://nonty.net/about/) for the wonderful work of [瀬戸フォント丸 (setofontmaru.ttf)](http://nonty.net/item/font/setofontmaru.php).
