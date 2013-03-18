@@ -27,25 +27,28 @@ Usage
 
 2. Replace "CCaptcha" with "ext.jcaptcha.JCaptcha" in your view script.
 
-		<?php
-		/* $this->widget('CCaptcha'); */
-		$this->widget('ext.jcaptcha.JCaptcha');
-		?>
+	```php
+	<?php
+	/* $this->widget('CCaptcha'); */
+	$this->widget('ext.jcaptcha.JCaptcha');
+	?>
+	```
 
 3. Replace "CCaptchaAction" with "ext.jcaptcha.JCaptchaAction" in your controller.
 
-		public function actions()
-		{
-			return array(
-				// captcha action renders the CAPTCHA image displayed on the contact page
-				'captcha'=>array(
-					/* 'class'=>'CCaptchaAction', */
-					'class'=>'ext.jcaptcha.JCaptchaAction',
-					'backColor'=>0xFFFFFF,
-				),
-				...
-			);
-		}
+	```php
+	public function actions()
+	{
+		return array(
+			'captcha'=>array(
+				/* 'class'=>'CCaptchaAction', */
+				'class'=>'ext.jcaptcha.JCaptchaAction',
+				'backColor'=>0xFFFFFF,
+			),
+			...
+		);
+	}
+	```
 
 Properties of JCaptcha
 ----------------------
@@ -123,8 +126,7 @@ It shows Chinese characters for the captcha.
 
 In the view script:
 
-```
-[php]
+```php
 <div class="row">
 <?php echo $form->labelEx($model,'verifyCode')) ?>
 <?php $this->widget('ext.jcaptcha.JCaptcha', array(
@@ -146,8 +148,7 @@ In the view script:
 
 And in the controller:
 
-```
-[php]
+```php
 	public function actions()
 	{
 		return array(

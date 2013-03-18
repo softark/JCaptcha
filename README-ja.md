@@ -26,25 +26,28 @@ CCaptcha を拡張しています。
 
 2. ビュー・スクリプト中の "CCaptcha" を "ext.jcaptcha.JCaptcha" で置き換えます。
 
-		<?php
-		/* $this->widget('CCaptcha'); */
-		$this->widget('ext.jcaptcha.JCaptcha');
-		?>
+	```php
+	<?php
+	/* $this->widget('CCaptcha'); */
+	$this->widget('ext.jcaptcha.JCaptcha');
+	?>
+	```
 
 3. コントローラ・ファイル中の "CCaptchaAction" を "ext.jcaptcha.JCaptchaAction" で置き換えます。
 
-		public function actions()
-		{
-			return array(
-				// captcha action renders the CAPTCHA image displayed on the contact page
-				'captcha'=>array(
-					/* 'class'=>'CCaptchaAction', */
-					'class'=>'ext.jcaptcha.JCaptchaAction',
-					'backColor'=>0xFFFFFF,
-				),
-				...
-			);
-		}
+	```php
+	public function actions()
+	{
+		return array(
+			'captcha'=>array(
+				/* 'class'=>'CCaptchaAction', */
+				'class'=>'ext.jcaptcha.JCaptchaAction',
+				'backColor'=>0xFFFFFF,
+			),
+			...
+		);
+	}
+	```
 
 JCaptcha のプロパティ
 -------------------
@@ -122,8 +125,7 @@ JCaptchaAction は CCaptchaAction のプロパティすべてに加えて、以�
 
 ビュー・スクリプト:
 
-```
-[php]
+```php
 <div class="row">
 <?php echo $form->labelEx($model,'verifyCode')) ?>
 <?php $this->widget('ext.jcaptcha.JCaptcha', array(
@@ -145,8 +147,7 @@ JCaptchaAction は CCaptchaAction のプロパティすべてに加えて、以�
 
 コントローラ:
 
-```
-[php]
+```php
 	public function actions()
 	{
 		return array(
