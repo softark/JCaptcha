@@ -3,6 +3,8 @@ JCaptcha
 
 Captcha for Yii-framework that can render non-alphabetic characters. It's an extension of CCaptcha.
 
+![JCaptcha in Action](jcaptcha.png "JCaptcha in Action")
+
 Requirements
 ------------
 + Yii Version 1.1.13 or later

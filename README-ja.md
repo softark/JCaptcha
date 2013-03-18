@@ -4,6 +4,8 @@ JCaptcha
 アルファベット以外の文字(たとえば平仮名や漢字)を表示できる Yii-framework 用の CAPTCHA です。
 CCaptcha を拡張しています。
 
+![JCaptcha in Action](jcaptcha.png "JCaptcha in Action")
+
 動作条件
 ------------
 + Yii Version 1.1.13 以降
