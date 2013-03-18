@@ -114,4 +114,4 @@ JCaptchaAction は CCaptchaAction のプロパティすべてに加えて、以�
 
 謝辞
 ----
-[瀬戸フォント丸 setofont.ttf](http://nonty.net/item/font/setofontmaru.php) をシェアして下さっている[瀬戸のぞみさん](http://nonty.net/about/) に感謝の意を表します。
+[瀬戸フォント丸 setofontmaru.ttf](http://nonty.net/item/font/setofontmaru.php) をシェアして下さっている[瀬戸のぞみさん](http://nonty.net/about/) に感謝の意を表します。
