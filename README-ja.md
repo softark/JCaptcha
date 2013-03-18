@@ -6,6 +6,8 @@ CCaptcha を拡張しています。
 
 ![JCaptcha in Action](docs/jcaptcha.png "JCaptcha in Action")
 
+![JCaptcha using Chinese characters](docs/jcaptcha-c.png "JCaptcha using Chinese characters")
+
 動作条件
 ------------
 + Yii Version 1.1.13 以降
@@ -111,6 +113,57 @@ JCaptchaAction は CCaptchaAction のプロパティすべてに加えて、以�
 	true の場合、UTF-8 から Shift_JIS への変換が必要か否かをチェックして、それに従う。  
 	既定値は false で、UTF-8 のまま文字を描画する。  
 	動作環境によっては、 true に設定する必要があるかも知れない。
+
+カスタマイズ
+------------
+
+以下は JCaptcha および JCaptchaAction をカスタマイズする方法を示すサンプルです。
+ここでは中国語(簡体字)の CAPTCHA を表示します。
+
+ビュー・スクリプト:
+
+```
+[php]
+<div class="row">
+<?php echo $form->labelEx($model,'verifyCode')) ?>
+<?php $this->widget('ext.jcaptcha.JCaptcha', array(
+	'clickableImage' => true,
+	'showRefreshButton'=> false,
+	'showTypeChangeButton' => true,
+	'buttonType' => 'link',
+	'typeChangeButtonLabel' => '漢字/ABC',
+	'imageOptions' => array(
+		'width' => 120,
+		'height' => 50,
+		'title' => '请单击取得新的编码',
+	)) ); ?>
+<?php echo $form->textField($model,'verifyCode'); ?>
+<?php echo $form->error($model,'verifyCode') ?>
+<p class="hint">請輸入被表示的文字。</p>
+</div>
+```
+
+コントローラ:
+
+```
+[php]
+	public function actions()
+	{
+		return array(
+			'captcha' => array(
+				'class' => 'ext.jcaptcha.JCaptchaAction',
+				'seeds' => '几乎所有的应用程序都是建立在数据库之上虽然可以非常灵活的操作数据库但有些时候一些设计的选择可以使它更便于使用首先应用程序广泛使用了设计的考虑主要围绕优化使用而不是组成复杂语句实际上大多的设计是使用友好的模式来解决实践中的问题最常用的方式是创建易于被人阅读和理解的代码例如使用命名来传达意思但是这很难做到',
+				'fontFileJ' => Yii::getPathOfAlias('ext.jcaptcha') . '/gbsn00lp.ttf',
+				'backColor' => 0xFFFFFF,
+			),
+		);
+	}
+
+```
+
+サンプル・コードでは、使用するフォント・ファイル ("gbsn00lp.ttf") をエクステンションと同じディレクトリに置いたものと仮定しています。
+
+"seeds" に指定する文字に、使用するフォントで表示できない文字を含めないように注意して下さい。
 
 履歴
 ----

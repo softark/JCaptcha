@@ -5,6 +5,8 @@ Captcha for Yii-framework that can render non-alphabetic characters. It's an ext
 
 ![JCaptcha in Action](docs/jcaptcha.png "JCaptcha in Action")
 
+![JCaptcha using Chinese characters](docs/jcaptcha-c.png "JCaptcha using Chinese characters")
+
 [日本語の README](README-ja.md)
 
 Requirements
@@ -112,6 +114,57 @@ The items with **(*)** are basic options that you may want to configure.
 
 	@var boolean  
 	Whether to check if conversion to shift_JIS is needed. Defaults to false.
+
+How to Customize
+----------------
+
+The following is a sample code that shows how to customize JCaptcha and JCaptchaAction.
+It shows Chinese characters for the captcha.
+
+In the view script:
+
+```
+[php]
+<div class="row">
+<?php echo $form->labelEx($model,'verifyCode')) ?>
+<?php $this->widget('ext.jcaptcha.JCaptcha', array(
+	'clickableImage' => true,
+	'showRefreshButton'=> false,
+	'showTypeChangeButton' => true,
+	'buttonType' => 'link',
+	'typeChangeButtonLabel' => '漢字/ABC',
+	'imageOptions' => array(
+		'width' => 120,
+		'height' => 50,
+		'title' => '请单击取得新的编码',
+	)) ); ?>
+<?php echo $form->textField($model,'verifyCode'); ?>
+<?php echo $form->error($model,'verifyCode') ?>
+<p class="hint">請輸入被表示的文字。</p>
+</div>
+```
+
+And in the controller:
+
+```
+[php]
+	public function actions()
+	{
+		return array(
+			'captcha' => array(
+				'class' => 'ext.jcaptcha.JCaptchaAction',
+				'seeds' => '几乎所有的应用程序都是建立在数据库之上虽然可以非常灵活的操作数据库但有些时候一些设计的选择可以使它更便于使用首先应用程序广泛使用了设计的考虑主要围绕优化使用而不是组成复杂语句实际上大多的设计是使用友好的模式来解决实践中的问题最常用的方式是创建易于被人阅读和理解的代码例如使用命名来传达意思但是这很难做到',
+				'fontFileJ' => Yii::getPathOfAlias('ext.jcaptcha') . '/gbsn00lp.ttf',
+				'backColor' => 0xFFFFFF,
+			),
+		);
+	}
+
+```
+
+Note that the sample code assumes that you have placed your choice of font file ("gbsn00lp.ttf") in the same directory as the extension.
+
+You have to be careful not to include characters in "seeds" that are not supported by your font.
 
 History
 -------
