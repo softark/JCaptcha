@@ -113,7 +113,13 @@ The items with **(*)** are basic options that you may want to configure.
 Resources
 ---------
 
- * [github repo](https://github.com/softark/JCaptcha)
++ [github repo](https://github.com/softark/JCaptcha)
+
+History
+-------
+
++ Version 1.0.0 (2013-03-18)
+	+ Initial release
 
 Acknowledgment
 --------------
