@@ -99,19 +99,11 @@ class JCaptcha extends CCaptcha
 				$buttonID=$options['id']=$id.'_button_tc';
 			if($this->buttonType==='button')
 			{
-				$html=CHtml::button($label, $options);
-				if ($this->showRefreshButton)
-				{
-					$html .= "&nbsp;";
-				}
+				$html=CHtml::button($label, $options) . "&nbsp;";
 			}
 			else
 			{
-				$html=CHtml::link($label, $url, $options);
-				if ($this->showRefreshButton)
-				{
-					$html .= "&nbsp;&nbsp;";
-				}
+				$html=CHtml::link($label, $url, $options) . "&nbsp;&nbsp;";
 			}
 			$js="jQuery('#$id').after(".CJSON::encode($html).");";
 			$selector="#$buttonID";
