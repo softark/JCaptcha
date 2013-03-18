@@ -21,7 +21,7 @@ Usage
 		    jcaptcha
 		      JCaptcha.php
 		      JCaptchaAction.php
-		      setofont.ttf
+		      setofontmaru.ttf
 
 2. Replace "CCaptcha" with "ext.jcaptcha.JCaptcha" in your view script.
 
@@ -115,5 +115,5 @@ The items with **(*)** are basic options that you may want to configure.
 
 Acknowledgment
 --------------
-Many thanks to [瀬戸のぞみ (Nozomi Seto)](http://nonty.net/about/) for the wonderful work of [瀬戸フォント丸 (setofontmaru.ttf)](http://nonty.net/item/font/setofont.php).
+Many thanks to [瀬戸のぞみ (Nozomi Seto)](http://nonty.net/about/) for the wonderful work of [瀬戸フォント丸 (setofontmaru.ttf)](http://nonty.net/item/font/setofontmaru.php).
 

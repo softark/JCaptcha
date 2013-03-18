@@ -20,7 +20,7 @@ CCaptcha を拡張しています。
 		    jcaptcha
 		      JCaptcha.php
 		      JCaptchaAction.php
-		      setofont.ttf
+		      setofontmaru.ttf
 
 2. ビュー・スクリプト中の "CCaptcha" を "ext.jcaptcha.JCaptcha" で置き換えます。
 
