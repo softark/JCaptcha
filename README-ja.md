@@ -4,7 +4,7 @@ JCaptcha
 アルファベット以外の文字(たとえば平仮名や漢字)を表示できる Yii-framework 用の CAPTCHA です。
 CCaptcha を拡張しています。
 
-![JCaptcha in Action](jcaptcha.png "JCaptcha in Action")
+![JCaptcha in Action](docs/jcaptcha.png "JCaptcha in Action")
 
 動作条件
 ------------
@@ -47,15 +47,15 @@ CCaptcha を拡張しています。
 JCaptcha のプロパティ
 -------------------
 JCaptcha は CCaptcha のプロパティすべてに加えて、以下のプロパティをサポートします。
-(*) マークを付けた項目は、変更することを予定した基本的なオプションです。
+**(*)** マークを付けた項目は、使用時に変更することを予定した基本的なオプションです。
 
-1. showTypeChangeButton (*)
+1. **showTypeChangeButton (*)**
 
 	@var boolean  
 	文字の種類を変更するボタンを表示するか否かを設定する。既定値は true 。  
 	false の場合、文字の種類は非アルファベットに固定。true の場合は、ユーザがアルファベットを選択出来る。
 
-2. typeChangeButtonLabel (*)
+2. **typeChangeButtonLabel (*)**
 
 	@var string  
 	文字の種類を変更するボタンのラベル。既定値は "かな/ABC"。  
@@ -69,28 +69,29 @@ JCaptcha は CCaptcha のプロパティすべてに加えて、以下のプロ�
 JCaptchaAction のプロパティ
 -------------------------
 JCaptchaAction は CCaptchaAction のプロパティすべてに加えて、以下のプロパティをサポートします。
-(*) マークを付けた項目は、変更することを予定した基本的なオプションです。
+**(*)** マークを付けた項目は、使用時に変更することを予定した基本的なオプションです。
 
-1. minLengthJ (*)
+1. **minLengthJ (*)**
 
 	@var integer  
 	ランダムに生成される単語の最小文字数。既定値は 5
 
-2. maxLengthJ (*)
+2. **maxLengthJ (*)**
 
 	@var integer  
 	ランダムに生成される単語の最大文字数。既定値は 5
 
-3. seeds (*)
+3. **seeds (*)**
 
 	@var string  
 	ランダムな単語を生成するための種文字列。  
 	既定値は、"あいうえおかきくけこがぎぐげごさしすせそざじずぜぞたちつてとだぢづでどなにぬねのはひふへほはひふへほはひふへほばびぶべぼぱぴぷぺぽまみむめもやゆよらりるれろわをん" という文字列。  
 
-4. fontFileJ (*)
+4. **fontFileJ (*)**
 
 	@var string  
-	非アルファベットを表示するために使用するフォントファイル。既定値は setofont.ttf。
+	非アルファベットを表示するために使用するフォントファイル。既定値は setofontmaru.ttf。  
+	既定のフォントは平仮名と片仮名しかサポートしていないことに注意。
 
 5. offsetJ
 
@@ -113,4 +114,4 @@ JCaptchaAction は CCaptchaAction のプロパティすべてに加えて、以�
 
 謝辞
 ----
-"瀬戸フォント" setofont.ttf (http://nonty.net/item/font/setofont.php) をシェアして下さっている瀬戸のぞみさん (http://nonty.net/about/) に感謝の意を表します。
+[瀬戸フォント丸 setofont.ttf](http://nonty.net/item/font/setofontmaru.php) をシェアして下さっている[瀬戸のぞみさん](http://nonty.net/about/) に感謝の意を表します。

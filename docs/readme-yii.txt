@@ -1,11 +1,6 @@
-JCaptcha
-========
+Captcha that renders non-alphabetic characters. It's an extension of [CCaptcha].
 
-Captcha for Yii-framework that can render non-alphabetic characters. It's an extension of CCaptcha.
-
-![JCaptcha in Action](docs/jcaptcha.png "JCaptcha in Action")
-
-[日本語の README](README-ja.md)
+![JCaptcha in Action](http://tools.softark.net/images/jcaptcha.png "JCaptcha in Action")
 
 Requirements
 ------------
@@ -25,6 +20,7 @@ Usage
 
 2. Replace "CCaptcha" with "ext.jcaptcha.JCaptcha" in your view script.
 
+		[php]
 		<?php
 		/* $this->widget('CCaptcha'); */
 		$this->widget('ext.jcaptcha.JCaptcha');
@@ -32,6 +28,7 @@ Usage
 
 3. Replace "CCaptchaAction" with "ext.jcaptcha.JCaptchaAction" in your controller.
 
+		[php]
 		public function actions()
 		{
 			return array(
@@ -47,7 +44,7 @@ Usage
 
 Properties of JCaptcha
 ----------------------
-JCaptcha supports all the properties of CCaptcha and the following additional ones.
+JCaptcha supports all the properties of [CCaptcha] and the following additional ones.
 The items with **(*)** are basic options that you may want to configure.
 
 1. **showTypeChangeButton (*)**
@@ -92,9 +89,7 @@ The items with **(*)** are basic options that you may want to configure.
 4. **fontFileJ (*)**
 
 	@var string  
-	The font to be used for non-alphabetic characters. Defaults to setofontmaru.ttf.  
-	Note that the default font only supports Japanese Hirakana and Katakana.
-	You have to provide an appropriate font file if you want to render your choice of characters.
+	The font to be used for non-alphabetic characters. Defaults to setofont.ttf.
 
 5. offsetJ
 
@@ -113,7 +108,12 @@ The items with **(*)** are basic options that you may want to configure.
 	@var boolean  
 	Whether to check if conversion to shift_JIS is needed. Defaults to false.
 
+Resources
+---------
+
+ * [github repo](https://github.com/softark/JCaptcha)
+
 Acknowledgment
 --------------
-Many thanks to [瀬戸のぞみ (Nozomi Seto)](http://nonty.net/about/) for the wonderful work of [瀬戸フォント丸 (setofontmaru.ttf)](http://nonty.net/item/font/setofont.php).
+Many thanks to [瀬戸のぞみ (Nozomi Seto)](http://nonty.net/about/) for the wonderful work of [瀬戸フォント (setofont.ttf)](http://nonty.net/item/font/setofont.php).
 

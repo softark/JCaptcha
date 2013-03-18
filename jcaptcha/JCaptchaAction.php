@@ -46,9 +46,9 @@ class JCaptchaAction extends CCaptchaAction
 	public $useNonAlphabet = true;
 
 	/**
-	 * @var string Non-Alphabet font file. Defaults to setofont.ttf.
+	 * @var string Non-Alphabet font file. Defaults to setofontmaru.ttf.
 	 * Thanks to 瀬戸のぞみ (Nozomi Seto) for the wonderful font.
-	 * http://nonty.net/item/font/setofont.php
+	 * http://nonty.net/item/font/setofontmaru.php
 	 */
 	public $fontFileJ;
 	
@@ -236,7 +236,7 @@ class JCaptchaAction extends CCaptchaAction
 
 		// font defaults to setofontmaru.ttf
 		if($this->fontFileJ === null)
-			$this->fontFileJ = dirname(__FILE__) . '/setofont.ttf';
+			$this->fontFileJ = dirname(__FILE__) . '/setofontmaru.ttf';
 
 		$length = mb_strlen($code, $encoding);
 		$box = imagettfbbox(30,0,$this->fontFileJ,$code);
