@@ -27,7 +27,7 @@ class JCaptcha extends CCaptcha
 	 * If true, the user can select standard alphabet characters.
 	 * Defaults to true.
 	 */
-	public $showTypechangeButton = true;
+	public $showTypeChangeButton = true;
 
 	/**
 	 * @var string the label of the type change button.
@@ -82,7 +82,7 @@ class JCaptcha extends CCaptcha
 	{
 		parent::registerClientScript();
 
-		if ($this->showTypechangeButton)
+		if ($this->showTypeChangeButton)
 		{
 			$cs=Yii::app()->clientScript;
 			$id=$this->imageOptions['id'];

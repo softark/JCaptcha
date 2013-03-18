@@ -236,12 +236,16 @@ class JCaptchaAction extends CCaptchaAction
 
 		// font defaults to setofontmaru.ttf
 		if($this->fontFileJ === null)
-			$this->fontFileJ = dirname(__FILE__) . '/setofontmaru.ttf';
+			$this->fontFileJ = dirname(__FILE__) . '/setofont.ttf';
 
 		$length = mb_strlen($code, $encoding);
 		$box = imagettfbbox(30,0,$this->fontFileJ,$code);
 		$w = $box[4] - $box[0] + $this->offsetJ * ($length - 1);
 		$h = $box[1] - $box[5];
+		if ($h <= 0)
+		{
+			$h = $w;
+		}
 		$scale = min(($this->width - $this->padding * 2) / $w,($this->height - $this->padding * 2) / $h);
 		$x = 8;
 		// font size and angle
@@ -250,6 +254,10 @@ class JCaptchaAction extends CCaptchaAction
 		// base line
 		$ybottom = $this->height - $this->padding * 4;
 		$ytop = (int)($h * $scale * 0.95) + $this->padding * 4;
+		if ($ytop > $ybottom)
+		{
+			$ytop = $ybottom;
+		}
 		for($i = 0; $i < $length; ++$i)
 		{
 			$letter = mb_substr( $code, $i, 1, $encoding);
