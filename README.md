@@ -15,9 +15,9 @@ Usage
 		protected
 		  extensions
 		    jcaptcha
-		        JCaptcha.php
-		        JCaptchaAction.php
-			    setofont.ttf
+		      JCaptcha.php
+		      JCaptchaAction.php
+		      setofont.ttf
 
 2. Replace "CCaptcha" with "ext.jcaptcha.JCaptcha" in your view script.
 
@@ -41,9 +41,9 @@ Usage
 			);
 		}
 
-Options of JCaptcha
--------------------
-JCaptcha supports all the options of CCaptcha and the following additional options.
+Properties of JCaptcha
+----------------------
+JCaptcha supports all the properties of CCaptcha and the following additional ones.
 The items with (*) are basic options that you may want to configure.
 
 1. showTypeChangeButton (*)
@@ -64,9 +64,9 @@ The items with (*) are basic options that you may want to configure.
 	@var boolean  
 	Whether to use inner CSS for image and the buttons.	Defaults to true.
 
-Options of JCaptchaAction
--------------------------
-JCaptchaAction supports all the options of CCaptcha and the following additional options.
+Properties of JCaptchaAction
+----------------------------
+JCaptchaAction supports all the properties of CCaptchaAction and the following additional ones.
 The items with (*) are basic options that you may want to configure.
 
 1. minLengthJ (*)
@@ -106,3 +106,8 @@ The items with (*) are basic options that you may want to configure.
 
 	@var boolean  
 	Whether to check if conversion to shift_JIS is needed. Defaults to false.
+
+Acknowledgment
+--------------
+Many thanks to 瀬戸のぞみ (Nozomi Seto http://nonty.net/about/) for the wonderful work of 瀬戸フォント (setofont.ttf) (http://nonty.net/item/font/setofont.php).
+
