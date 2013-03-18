@@ -16,7 +16,7 @@ Usage
 		    jcaptcha
 		      JCaptcha.php
 		      JCaptchaAction.php
-		      setofont.ttf
+		      setofontmaru.ttf
 
 2. Replace "CCaptcha" with "ext.jcaptcha.JCaptcha" in your view script.
 
@@ -89,7 +89,9 @@ The items with **(*)** are basic options that you may want to configure.
 4. **fontFileJ (*)**
 
 	@var string  
-	The font to be used for non-alphabetic characters. Defaults to setofont.ttf.
+	The font to be used for non-alphabetic characters. Defaults to setofontmaru.ttf.  
+	Note that the default font only supports Japanese Hirakana and Katakana.
+	You have to provide an appropriate font file if you want to render your choice of characters.
 
 5. offsetJ
 
@@ -115,5 +117,5 @@ Resources
 
 Acknowledgment
 --------------
-Many thanks to [瀬戸のぞみ (Nozomi Seto)](http://nonty.net/about/) for the wonderful work of [瀬戸フォント (setofont.ttf)](http://nonty.net/item/font/setofont.php).
+Many thanks to [瀬戸のぞみ (Nozomi Seto)](http://nonty.net/about/) for the wonderful work of [瀬戸フォント丸 (setofontmaru.ttf)](http://nonty.net/item/font/setofontmaru.php).
 
