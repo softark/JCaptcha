@@ -18,7 +18,7 @@ Usage
 		    jcaptcha
 		      JCaptcha.php
 		      JCaptchaAction.php
-		      setofontmaru.ttf
+		      seto-mini.ttf
 
 2. Replace "CCaptcha" with "ext.jcaptcha.JCaptcha" in your view script.
 
