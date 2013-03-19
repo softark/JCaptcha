@@ -1,7 +1,7 @@
 JCaptcha
 ========
 
-Captcha for Yii-framework that can render non-alphabetic characters. It's an extension of CCaptcha.
+Captcha for Yii-framework that can render non alphabetical characters. It's an extension of CCaptcha.
 
 ![JCaptcha in Action](docs/jcaptcha.png "JCaptcha in Action")
 
@@ -59,14 +59,14 @@ The items with **(*)** are basic options that you may want to configure.
 
 	@var boolean  
 	Whether to show the button to change the character type. Defaults to true.  
-	If false, the type of the characters is fixed to non-alphabet characters.
-	If true, the user can select standard alphabet characters.
+	If false, the type of the characters is fixed to non alphabetical characters.
+	If true, the user can select standard alphabetical captcha.
 
 2. **typeChangeButtonLabel (*)**
 
 	@var string  
-	The label of the type change button. Defaults to "かな/ABC" ... "Japanese Kana/ABC".  
-	You may want to change it if you want non-Japanese characters.
+	The label of the type change button. Defaults to "かな/ABC" ... "Japanese Hirakana/ABC".  
+	You may want to change it if you want to use the characters of your own language, "漢字/ABC" for example.
 
 3. useInnerCss
 
@@ -78,39 +78,39 @@ Properties of JCaptchaAction
 JCaptchaAction supports all the properties of CCaptchaAction and the following additional ones.
 The items with **(*)** are basic options that you may want to configure.
 
-1. **minLengthJ (*)**
+1. **fontFileJ (*)**
+
+	@var string  
+	The font to be used for non-alphabetical characters. Defaults to seto-mini.ttf.  
+	Note that **the default font only supports standard ASCII and Japanese Hirakana and Katakana**.
+	You have to provide an appropriate font file if you want to render your choice of characters.
+
+2. **seeds (*)**
+
+	@var string  
+	The string used for generating the random word. Defaults to a series of Japanese Hirakana characters: "あいうえおかきくけこがぎぐげごさしすせそざじずぜぞたちつてとだぢづでどなにぬねのはひふへほはひふへほはひふへほばびぶべぼぱぴぷぺぽまみむめもやゆよらりるれろわをん". Several characters randomly selected from this string will make up the captcha word.  
+	You may set your own. Make sure that your `fontFileJ` can render all the characters in the `seeds`.
+
+3. **minLengthJ (*)**
 
 	@var integer  
 	The minimum length for randomly generated word.	Defaults to 5
 
-2. **maxLengthJ (*)**
+4. **maxLengthJ (*)**
 
 	@var integer  
 	The maximum length for randomly generated word.	Defaults to 5
-
-3. **seeds (*)**
-
-	@var string  
-	The string used for generating the random word. Defaults to a series of Japanese Kana characters.  
-	You may want to set your own.
-
-4. **fontFileJ (*)**
-
-	@var string  
-	The font to be used for non-alphabetic characters. Defaults to setofontmaru.ttf.  
-	Note that the default font only supports Japanese Hirakana and Katakana.
-	You have to provide an appropriate font file if you want to render your choice of characters.
 
 5. offsetJ
 
 	@var integer  
 	The offset between characters. Defaults to 2.  
-	You can adjust this property in order to decrease or increase the readability of the non-alphabetic captcha.
+	You can adjust this property in order to decrease or increase the readability of the non alphabetical captcha.
 
 6. fixedAngle
 
 	@var boolean  
-	Whether to render the non-alphabetic captcha image with a fixed angle. Defaults to false.  
+	Whether to render the non alphabetical captcha image with a fixed angle. Defaults to false.  
 	You may want to set this to true if you have trouble rendering your font.
 
 7. checkSJISConversion
@@ -167,9 +167,9 @@ And in the controller:
 
 ```
 
-Note that the sample code assumes that you have placed your choice of font file ("gbsn00lp.ttf") in the same directory as the extension.
+Note that the sample code assumes that you have placed your choice of font file in the same directory as the extension.
 
-You have to be careful not to include characters in "seeds" that are not supported by your font.
+You have to be careful not to include the characters in "seeds" that are not supported by your font.
 
 History
 -------
@@ -178,8 +178,10 @@ History
 	+ Initial release
 + Version 1.0.1 (2013-03-18)
 	+ Bug fix
++ Version 1.0.2 (2013-03-19)
+	+ Replaced the default font
 
 Acknowledgment
 --------------
-Many thanks to [瀬戸のぞみ (Nozomi Seto)](http://nonty.net/about/) for the wonderful work of [瀬戸フォント丸 (setofontmaru.ttf)](http://nonty.net/item/font/setofontmaru.php).
+Many thanks to [瀬戸のぞみ (Nozomi Seto)](http://nonty.net/about/) for the wonderful work of [瀬戸フォント (setofont.ttf)](http://nonty.net/item/font/setofont.php). The default font "seto-mini.ttf" is a subset of setofont.ttf.
 

@@ -234,9 +234,9 @@ class JCaptchaAction extends CCaptchaAction
 				(int)($this->foreColor % 0x10000 / 0x100),
 				$this->foreColor % 0x100);
 
-		// font defaults to setofontmaru.ttf
+		// font defaults to seto-mini.ttf
 		if($this->fontFileJ === null)
-			$this->fontFileJ = dirname(__FILE__) . '/setofont.ttf';
+			$this->fontFileJ = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'seto-mini.ttf';
 
 		$length = mb_strlen($code, $encoding);
 		$box = imagettfbbox(30,0,$this->fontFileJ,$code);
