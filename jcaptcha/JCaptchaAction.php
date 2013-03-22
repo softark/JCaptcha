@@ -46,9 +46,10 @@ class JCaptchaAction extends CCaptchaAction
 	public $useNonAlphabet = true;
 
 	/**
-	 * @var string Non-Alphabet font file. Defaults to setofontmaru.ttf.
-	 * Thanks to 瀬戸のぞみ (Nozomi Seto) for the wonderful font.
-	 * http://nonty.net/item/font/setofontmaru.php
+	 * @var string Non-Alphabet font file. Defaults to seto-mini.ttf, a subset of
+	 * setofont.ttf (http://nonty.net/item/font/setofont.php) created and shared
+	 * by 瀬戸のぞみ (Nozomi Seto). Special thanks to Nozomi for the wonderful font.
+	 * Note that seto-mini.ttf supports only ASCII, Hirakana and Katakana.
 	 */
 	public $fontFileJ;
 	
