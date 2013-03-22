@@ -53,7 +53,7 @@ Usage
 Properties of JCaptcha
 ----------------------
 JCaptcha supports all the properties of CCaptcha and the following additional ones.
-The items with **(*)** are basic options that you may want to configure.
+The items with **(*)** are the basic options that you may want to configure.
 
 1. **showTypeChangeButton (*)**
 
@@ -76,7 +76,7 @@ The items with **(*)** are basic options that you may want to configure.
 Properties of JCaptchaAction
 ----------------------------
 JCaptchaAction supports all the properties of CCaptchaAction and the following additional ones.
-The items with **(*)** are basic options that you may want to configure.
+The items with **(*)** are the basic options that you may want to configure.
 
 1. **fontFileJ (*)**
 
