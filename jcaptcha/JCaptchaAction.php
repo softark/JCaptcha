@@ -203,6 +203,10 @@ class JCaptchaAction extends CCaptchaAction
 			return;
 		}
 
+		// font defaults to seto-mini.ttf
+		if($this->fontFileJ === null)
+			$this->fontFileJ = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'seto-mini.ttf';
+
 		$encoding = 'UTF-8';
 		
 		// check if conversion to Shift_JIS is needed
@@ -216,7 +220,21 @@ class JCaptchaAction extends CCaptchaAction
 				$encoding = 'SJIS';
 			}
 		}
-
+		
+		if($this->backend===null && CCaptcha::checkRequirements('imagick') || $this->backend==='imagick')
+			$this->renderImageImagickJ($code, $encoding);
+		else if($this->backend===null && CCaptcha::checkRequirements('gd') || $this->backend==='gd')
+			$this->renderImageGDJ($code, $encoding);
+	}
+	
+	/**
+	 * Renders the CAPTCHA image based on the code using GD.
+	 * @param string $code the verification code
+	 * @param string $encoding the encoding of the verification code
+	 * @return string image content
+	 */
+	protected function renderImageGDJ($code, $encoding)
+	{
 		$image = imagecreatetruecolor($this->width,$this->height);
 
 		$backColor = imagecolorallocate($image,
@@ -234,19 +252,15 @@ class JCaptchaAction extends CCaptchaAction
 				(int)($this->foreColor % 0x10000 / 0x100),
 				$this->foreColor % 0x100);
 
-		// font defaults to seto-mini.ttf
-		if($this->fontFileJ === null)
-			$this->fontFileJ = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'seto-mini.ttf';
-
 		$length = mb_strlen($code, $encoding);
 		$box = imagettfbbox(30,0,$this->fontFileJ,$code);
 		$w = $box[4] - $box[0] + $this->offsetJ * ($length - 1);
 		$h = $box[1] - $box[5];
 		if ($h <= 0)
 		{
-			$h = $w;
+			$h = $w / $length;
 		}
-		$scale = min(($this->width - $this->padding * 2) / $w,($this->height - $this->padding * 2) / $h);
+		$scale = min(($this->width - $this->padding * 2) / $w, ($this->height - $this->padding * 2) / $h);
 		$x = 8;
 		// font size and angle
 		$fontSize = (int)(30 * $scale * 0.90);
@@ -277,5 +291,63 @@ class JCaptchaAction extends CCaptchaAction
 		header("Content-type: image/png");
 		imagepng($image);
 		imagedestroy($image);
+	}
+
+	/**
+	 * Renders the CAPTCHA image based on the code using Imagick.
+	 * @param string $code the verification code
+	 * @param string $encoding the encoding of the verification code
+	 * @return string image content
+	 */
+	protected function renderImageImagickJ($code, $encoding)
+	{
+		$backColor = new ImagickPixel('#'.dechex($this->backColor));
+		$foreColor = new ImagickPixel('#'.dechex($this->foreColor));
+
+		$image = new Imagick();
+		$image->newImage($this->width, $this->height, $backColor);
+
+		$draw = new ImagickDraw();
+		$draw->setFont($this->fontFileJ);
+		$draw->setFontSize(30);
+		$fontMetrics=$image->queryFontMetrics($draw, $code);
+
+		$length = mb_strlen($code, $encoding);
+		$w = (int)($fontMetrics['textWidth']) + $this->offsetJ * ($length-1);
+		$h = (int)($fontMetrics['textHeight']);
+		$scale = min(($this->width - $this->padding*2) / $w, ($this->height - $this->padding*2) / $h);
+		$x=8;
+		// font size and angle
+		$fontSize = (int)(30 * $scale * 0.90);
+		$angle = 0;
+		// base line
+		$ybottom = $this->height - $this->padding * 4;
+		$ytop = (int)($h * $scale * 0.95) + $this->padding * 4;
+		if ($ytop > $ybottom)
+		{
+			$ytop = $ybottom;
+		}
+		for($i = 0; $i < $length; ++$i)
+		{
+			$letter = mb_substr( $code, $i, 1, $encoding);
+			$y = mt_rand($ytop, $ybottom);
+			if (!$this->fixedAngle)
+				$angle = mt_rand(-15, 15);
+			$draw = new ImagickDraw();
+			$draw->setFont($this->fontFileJ);
+			$draw->setFontSize($fontSize);
+			$draw->setFillColor($foreColor);
+			$image->annotateImage($draw, $x, $y, $angle, $letter);
+			$fontMetrics = $image->queryFontMetrics($draw, $letter);
+			$x += (int)($fontMetrics['textWidth']) + $this->offsetJ;
+		}
+
+		header('Pragma: public');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header('Content-Transfer-Encoding: binary');
+		header("Content-type: image/png");
+		$image->setImageFormat('png');
+		echo $image;
 	}
 }
