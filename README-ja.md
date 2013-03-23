@@ -181,6 +181,8 @@ JCaptchaAction は CCaptchaAction のプロパティすべてに加えて、以�
 	+ バグ・フィックス
 + Version 1.0.2 (2013-03-19)
 	+ 既定のフォントを変更
++ Version 1.0.3 (2013-03-23)
+	+ imagick サポート追加、コード・リファクタ
 
 謝辞
 ----

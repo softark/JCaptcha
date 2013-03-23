@@ -180,6 +180,8 @@ History
 	+ Bug fix
 + Version 1.0.2 (2013-03-19)
 	+ Replaced the default font
++ Version 1.0.3 (2013-03-23)
+	+ Added imagick support, refactored the code
 
 Acknowledgment
 --------------
