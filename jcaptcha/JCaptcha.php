@@ -10,12 +10,13 @@
 /**
  * JCaptcha is an extension to CCaptcha.
  * 
- * JCaptcha can render a CAPTCHA image with Japanese characters while CCaptcha is only for alphabet.
+ * JCaptcha can render a CAPTCHA image with non alphabetical characters while CCaptcha is only for alphabets.
  * 
  * JCaptcha must be used together with JCaptchaAction to provide its capability.
  *
  * JCaptcha may render a button next to the CAPTCHA image. Clicking on the button
- * will change the type of the character from Japanese characters to alphabet and vice versa.
+ * will change the type of the characters from non alphabetical to alphabetical
+ * and vice versa.
  *
  * @author Nobuo Kihara <softark@gmail.com>
  */
@@ -23,8 +24,8 @@ class JCaptcha extends CCaptcha
 {
 	/**
 	 * @var boolean whether to show the button to change the character type.
-	 * If false, the type of the characters is fixed to non-alphabet characters.
-	 * If true, the user can select standard alphabet characters.
+	 * If false, the type of the characters is fixed to non alphabetical.
+	 * If true, the user can select standard alphabetical characters.
 	 * Defaults to true.
 	 */
 	public $showTypeChangeButton = true;
@@ -47,11 +48,11 @@ class JCaptcha extends CCaptcha
 	public function run()
 	{
 		if(self::checkRequirements('imagick') || self::checkRequirements('gd'))
-	    {
+		{
 			$this->renderImage();
 			$this->registerClientScript();
 			$this->registerCss();
-	    }
+		}
 		else
 			throw new CException(Yii::t('yii','GD with FreeType or ImageMagick PHP extensions are required.'));
 	}
@@ -75,8 +76,7 @@ class JCaptcha extends CCaptcha
 	}
 
 	/**
-	 * Registers the needed client scripts.
-	 * @since 1.0.2
+	 * Registers the nececssary client scripts.
 	 */
 	public function registerClientScript()
 	{
@@ -127,7 +127,7 @@ $('body').on('click', '$selector', function(event){
 	}
 
 	/**
-	 * Registers the needed CSS
+	 * Registers the inner CSS
 	 */
 	public function registerCss()
 	{

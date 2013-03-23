@@ -10,7 +10,7 @@
 /**
  * JCaptchaAction is an extension to CCaptchaAction.
  * 
- * JCaptchaAction can render a CAPTCHA image with Japanese characters.
+ * JCaptchaAction can render a CAPTCHA image with non alphabetical characters while CCaptchaAction is only for alphabets.
  *
  * JCaptchaAction is used together with JCaptcha and {@link CCaptchaValidator}.
  *
@@ -20,7 +20,7 @@
 class JCaptchaAction extends CCaptchaAction
 {
 	/**
-	 * The name of the GET parameter indicating whether the CAPTCHA type (non-alphabet/alphabet) should be changed.
+	 * The name of the GET parameter indicating whether the CAPTCHA type (non alphabetical characters/alphabets) should be changed.
 	 */
 	const TYPECHANGE_GET_VAR='typechange';
 
@@ -36,17 +36,17 @@ class JCaptchaAction extends CCaptchaAction
 	
 	/**
 	 * @var integer the offset between characters. Defaults to 2. You can adjust this property
-	 * in order to decrease or increase the readability of the non-alphabet captcha.
+	 * in order to decrease or increase the readability of the non alphabetical captcha.
 	 **/
 	public $offsetJ = 2;
 
 	/**
-	 * @var boolean whether to use Non-Alphabet Characters. Defaults to false.
+	 * @var boolean whether to use non alphabetical characters. Defaults to true.
 	 */
-	public $useNonAlphabet = true;
+	public $useJChars = true;
 
 	/**
-	 * @var string Non-Alphabet font file. Defaults to seto-mini.ttf, a subset of
+	 * @var string Non alphabetical font file. Defaults to seto-mini.ttf, a subset of
 	 * setofont.ttf (http://nonty.net/item/font/setofont.php) created and shared
 	 * by 瀬戸のぞみ (Nozomi Seto). Special thanks to Nozomi for the wonderful font.
 	 * Note that seto-mini.ttf supports only ASCII, Hirakana and Katakana.
@@ -76,13 +76,13 @@ class JCaptchaAction extends CCaptchaAction
 	 */
 	public function run()
 	{
-		// Character type ... defaults to Non-Alphabet
+		// Character type ... defaults to non alphabetical characters
 		$session = Yii::app()->session;
 		$session->open();
 		$name = $this->getSessionKey();
-		if ( $session[$name . 'type'] === 'alpha' )
+		if ($session[$name . 'type'] !== null && $session[$name . 'type'] === 'abc')
 		{
-			$this->useNonAlphabet = false;
+			$this->useJChars = false;
 		}
 
 		if (isset($_GET[self::REFRESH_GET_VAR]))  // AJAX request to refresh the code
@@ -100,7 +100,7 @@ class JCaptchaAction extends CCaptchaAction
 		}
 		elseif (isset($_GET[self::TYPECHANGE_GET_VAR]))  // AJAX request to change the character type
 		{
-			$this->useNonAlphabet = ! $this->useNonAlphabet;
+			$this->useJChars = ! $this->useJChars;
 			$code = $this->getVerifyCode(true);
 			echo CJSON::encode(array(
 				'hash1'=>$this->generateValidationHash($code),
@@ -151,7 +151,7 @@ class JCaptchaAction extends CCaptchaAction
 		if($session[$name] === null || $regenerate)
 		{
 			$session[$name] = $this->generateVerifyCode();
-			$session[$name . 'type'] = $this->useNonAlphabet ? 'non-alpha' : 'alpha';
+			$session[$name . 'type'] = $this->useJChars ? 'jchars' : 'abc';
 			$session[$name . 'count'] = 1;
 		}
 		return $session[$name];
@@ -163,8 +163,8 @@ class JCaptchaAction extends CCaptchaAction
 	 */
 	protected function generateVerifyCode()
 	{
-		// Alphabet ?
-		if (!$this->useNonAlphabet)
+		// alphabets ?
+		if (!$this->useJChars)
 		{
 			return parent::generateVerifyCode();
 		}
@@ -197,8 +197,8 @@ class JCaptchaAction extends CCaptchaAction
 	 */
 	protected function renderImage($code)
 	{
-		// alphabet ?
-		if (!$this->useNonAlphabet)
+		// alphabets ?
+		if (!$this->useJChars)
 		{
 			parent::renderImage($code);
 			return;
