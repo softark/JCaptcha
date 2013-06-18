@@ -9,9 +9,9 @@
 
 /**
  * JCaptcha is an extension to CCaptcha.
- * 
+ *
  * JCaptcha can render a CAPTCHA image with non alphabetical characters while CCaptcha is only for alphabets.
- * 
+ *
  * JCaptcha must be used together with JCaptchaAction to provide its capability.
  *
  * JCaptcha may render a button next to the CAPTCHA image. Clicking on the button
@@ -37,24 +37,22 @@ class JCaptcha extends CCaptcha
 	public $typeChangeButtonLabel = 'かな/ABC';
 
 	/**
-	 * @var type boolean whether to use inner CSS for image and the buttons.
+	 * @var boolean whether to use inner CSS for image and the buttons.
 	 * Defaults to true.
 	 */
 	public $useInnerCss = true;
-	
+
 	/**
 	 * Renders the widget.
 	 */
 	public function run()
 	{
-		if(self::checkRequirements('imagick') || self::checkRequirements('gd'))
-		{
+		if (self::checkRequirements('imagick') || self::checkRequirements('gd')) {
 			$this->renderImage();
 			$this->registerClientScript();
 			$this->registerCss();
-		}
-		else
-			throw new CException(Yii::t('yii','GD with FreeType or ImageMagick PHP extensions are required.'));
+		} else
+			throw new CException(Yii::t('yii', 'GD with FreeType or ImageMagick PHP extensions are required.'));
 	}
 
 	/**
@@ -62,56 +60,50 @@ class JCaptcha extends CCaptcha
 	 */
 	protected function renderImage()
 	{
-		if(!isset($this->imageOptions['id']))
-			$this->imageOptions['id']=$this->getId();
+		if (!isset($this->imageOptions['id']))
+			$this->imageOptions['id'] = $this->getId();
 		// set the default class for image and the buttons
-		if(!isset($this->imageOptions['class']))
-			$this->imageOptions['class']='jcaptcha';
-		if(!isset($this->buttonOptions['class']))
-			$this->buttonOptions['class']='jcaptcha';
+		if (!isset($this->imageOptions['class']))
+			$this->imageOptions['class'] = 'jcaptcha';
+		if (!isset($this->buttonOptions['class']))
+			$this->buttonOptions['class'] = 'jcaptcha';
 
-		$url=$this->getController()->createUrl($this->captchaAction,array('v'=>uniqid()));
-		$alt=isset($this->imageOptions['alt'])?$this->imageOptions['alt']:'';
-		echo CHtml::image($url,$alt,$this->imageOptions);
+		$url = $this->getController()->createUrl($this->captchaAction, array('v' => uniqid()));
+		$alt = isset($this->imageOptions['alt']) ? $this->imageOptions['alt'] : '';
+		echo CHtml::image($url, $alt, $this->imageOptions);
 	}
 
 	/**
-	 * Registers the nececssary client scripts.
+	 * Registers the necessary client scripts.
 	 */
 	public function registerClientScript()
 	{
 		parent::registerClientScript();
 
-		if ($this->showTypeChangeButton)
-		{
-			$cs=Yii::app()->clientScript;
-			$id=$this->imageOptions['id'];
+		if ($this->showTypeChangeButton) {
+			$cs = Yii::app()->clientScript;
+			$id = $this->imageOptions['id'];
 
-			$js="";
-
-			$url=$this->getController()->createUrl($this->captchaAction,array(JCaptchaAction::TYPECHANGE_GET_VAR=>true));
-			$cs->registerScript('Yii.JCaptcha#'.$id,'// dummy');
-			$label=$this->typeChangeButtonLabel;
-			$options=$this->buttonOptions;
-			if(isset($options['id']))
-				$buttonID=$options['id']=$options['id'].'_tc';
+			$url = $this->getController()->createUrl($this->captchaAction, array(JCaptchaAction::TYPECHANGE_GET_VAR => true));
+			$cs->registerScript('Yii.JCaptcha#' . $id, '// dummy');
+			$label = $this->typeChangeButtonLabel;
+			$options = $this->buttonOptions;
+			if (isset($options['id']))
+				$buttonID = $options['id'] = $options['id'] . '_tc';
 			else
-				$buttonID=$options['id']=$id.'_button_tc';
-			if($this->buttonType==='button')
-			{
-				$html=CHtml::button($label, $options) . "&nbsp;";
+				$buttonID = $options['id'] = $id . '_button_tc';
+			if ($this->buttonType === 'button') {
+				$html = CHtml::button($label, $options) . "&nbsp;";
+			} else {
+				$html = CHtml::link($label, $url, $options) . "&nbsp;&nbsp;";
 			}
-			else
-			{
-				$html=CHtml::link($label, $url, $options) . "&nbsp;&nbsp;";
-			}
-			$js="jQuery('#$id').after(".CJSON::encode($html).");";
-			$selector="#$buttonID";
+			$js = "jQuery('#$id').after(" . CJSON::encode($html) . ");";
+			$selector = "#$buttonID";
 
-			$js.="
+			$js .= "
 $('body').on('click', '$selector', function(event){
 	jQuery.ajax({
-		url: ".CJSON::encode($url).",
+		url: " . CJSON::encode($url) . ",
 		dataType: 'json',
 		cache: false,
 		success: function(data) {
@@ -122,7 +114,7 @@ $('body').on('click', '$selector', function(event){
 	event.preventDefault();
 });
 ";
-			$cs->registerScript('Yii.JCaptcha#'.$id,$js);
+			$cs->registerScript('Yii.JCaptcha#' . $id, $js);
 		}
 	}
 
@@ -131,19 +123,17 @@ $('body').on('click', '$selector', function(event){
 	 */
 	public function registerCss()
 	{
-		if ($this->useInnerCss)
-		{
+		if ($this->useInnerCss) {
 			$css = "
 img.{$this->imageOptions['class']} {
 	border: 1px solid #CCCCCC;
 	margin: 4px 8px 8px 0px;";
 
-	if ($this->clickableImage)
-	{
-		$css .= "
+			if ($this->clickableImage) {
+				$css .= "
 	cursor: pointer;";
-	}
-	$css .= "
+			}
+			$css .= "
 }";
 			Yii::app()->clientScript->registerCss('j-captcha-css', $css);
 		}
