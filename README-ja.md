@@ -1,7 +1,7 @@
 JCaptcha
 ========
 
-アルファベット以外の文字(たとえば平仮名や漢字)を表示できる Yii-framework 用の CAPTCHA です。
+アルファベット以外の文字(たとえば平仮名や漢字)を表示できる Yii-framework 1.1.x 用の CAPTCHA です。
 CCaptcha を拡張しています。
 
 ![JCaptcha in Action](docs/jcaptcha.png "JCaptcha in Action")
@@ -11,7 +11,9 @@ CCaptcha を拡張しています。
 動作条件
 ------------
 + Yii Version 1.1.13 以降
-+ PHP GD + FreeType 拡張
++ PHP GD + FreeType 拡張 または PHP ImageMagic 拡張
+
+Yii 1.1 専用です。Yii 2.0 には、[softark/yii2-mb-captcha](https://github.com/softark/yii2-mb-captcha) を使用して下さい。
 
 使用方法
 --------

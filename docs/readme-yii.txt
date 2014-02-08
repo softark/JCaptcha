@@ -1,4 +1,4 @@
-Captcha that renders non alphabetical characters. It's an extension of [CCaptcha].
+Captcha for Yii 1.1.x that renders non alphabetical characters. It's an extension of [CCaptcha].
 
 ![JCaptcha in Action](http://tools.softark.net/images/jcaptcha.png "JCaptcha in Action")
 
@@ -7,7 +7,9 @@ Captcha that renders non alphabetical characters. It's an extension of [CCaptcha
 Requirements
 ------------
 + Yii Version 1.1.13 or later
-+ PHP GD + FreeType extension
++ PHP GD + FreeType extension or PHP ImageMagick extension
+
+Check [softark/yii2-mb-captcha](https://github.com/softark/yii2-mb-captcha) for Yii 2.0.
 
 Usage
 -----

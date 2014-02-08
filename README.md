@@ -1,7 +1,7 @@
 JCaptcha
 ========
 
-Captcha for Yii-framework that can render non alphabetical characters. It's an extension of CCaptcha.
+Captcha for Yii-framework 1.1.x that can render non alphabetical characters. It's an extension of CCaptcha.
 
 ![JCaptcha in Action](docs/jcaptcha.png "JCaptcha in Action")
 
@@ -12,7 +12,9 @@ Captcha for Yii-framework that can render non alphabetical characters. It's an e
 Requirements
 ------------
 + Yii Version 1.1.13 or later
-+ PHP GD + FreeType extension
++ PHP GD + FreeType extension or PHP ImageMagick extension
+
+It only works for Yii 1.1. Please use [softark/yii2-mb-captcha](https://github.com/softark/yii2-mb-captcha) for Yii 2.0.
 
 Usage
 -----
